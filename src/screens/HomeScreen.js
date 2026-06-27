@@ -89,7 +89,7 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: 240 }}>
+      contentContainerStyle={{ paddingBottom: 140 }}>
         {/* Budget Summary Card (appears after first transaction) */}
         {showSummary ? (
           <Animated.View style={[styles.summaryCard, {
@@ -134,6 +134,17 @@ export default function HomeScreen({ navigation }) {
           />
         </View>
 
+          {/* Demo button */}
+          <TouchableOpacity
+          style={styles.demoButton}
+          onPress={simulateBankNotification}
+          disabled={isAnimating}
+        >
+          <Text style={styles.demoButtonText}>
+            {isAnimating ? 'Processing...' : '💳 Simulate Bank Notification'}
+          </Text>
+        </TouchableOpacity>
+
         {/* Recent Activity */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
@@ -147,17 +158,6 @@ export default function HomeScreen({ navigation }) {
             <TransactionRow key={tx.id} transaction={tx} />
           ))}
         </View>
-
-        {/* Demo button */}
-        <TouchableOpacity
-          style={styles.demoButton}
-          onPress={simulateBankNotification}
-          disabled={isAnimating}
-        >
-          <Text style={styles.demoButtonText}>
-            {isAnimating ? 'Processing...' : '💳 Simulate Bank Notification'}
-          </Text>
-        </TouchableOpacity>
 
         <View style={{ height: 100 }} />
       </ScrollView>
@@ -213,7 +213,8 @@ const styles = StyleSheet.create({
     margin: 16,
     backgroundColor: '#1a6fd4',
     borderRadius: 16,
-    padding: 20,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
     alignItems: 'center',
   },
   summaryLabel: {
